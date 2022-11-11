@@ -1,0 +1,19 @@
+# Build Directories
+**/bin/
+**/bin-int/
+
+# Include vendor files
+!vendor/bin/
+
+# Visual Studio Files
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+**.nsight-gfxproj
+**.DotSettings
+**.user
+
+# SPIRV compiled shaders
+**.spv
