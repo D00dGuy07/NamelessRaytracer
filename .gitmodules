@@ -1,3 +1,6 @@
 [submodule "NamelessRaytracer\\vendor\\glm"]
 	path = NamelessRaytracer\\vendor\\glm
 	url = https://github.com/g-truc/glm.git
+[submodule "NamelessRaytracer/vendor/tinygltf"]
+	path = NamelessRaytracer/vendor/tinygltf
+	url = https://github.com/syoyo/tinygltf

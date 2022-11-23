@@ -25,13 +25,20 @@ project "NamelessRaytracer"
 
 		"%{prj.name}/vendor/glm/glm/**.h",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl"
+		"%{prj.name}/vendor/glm/glm/**.inl",
+
+		"%{prj.name}/vendor/tinygltf/stb_image.h",
+		"%{prj.name}/vendor/tinygltf/stb_image_write.h",
+		"%{prj.name}/vendor/tinygltf/json.hpp",
+		"%{prj.name}/vendor/tinygltf/tiny_gltf.h",
+		"%{prj.name}/vendor/tinygltf/tiny_gltf.cc"
 	}
 
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/glm"
+		"%{prj.name}/vendor/glm",
+		"%{prj.name}/vendor/tinygltf"
 	}
 
 	filter "system:windows"
