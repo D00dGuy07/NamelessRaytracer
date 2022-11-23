@@ -6,6 +6,14 @@
 #include "tiny_gltf.h"
 #include "stb_image_write.h"
 
+#define GLFW_INCLUDE_NONE
+#include "GLFW/glfw3.h"
+#include "glad/glad.h"
+
+#include "imgui.h"
+#include "backends/imgui_impl_glfw.h"
+#include "backends/imgui_impl_opengl3.h"
+
 // Triangle intersection code
 
 struct Ray
@@ -624,6 +632,66 @@ TriangleRegistry LoadModel(const std::string& path)
 
 int main()
 {
+	if (!glfwInit())
+		return -1;
+
+	GLFWwindow* window = glfwCreateWindow(1280, 720, "I am not putting hello world here again", NULL, NULL);
+	if (!window)
+	{
+		glfwTerminate();
+		return -1;
+	}
+	glfwMakeContextCurrent(window);
+
+	int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+	if (!status)
+	{
+		glfwTerminate();
+		return -1;
+	}
+
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO();
+
+	ImGui::StyleColorsDark();
+
+	ImGui_ImplGlfw_InitForOpenGL(window, true);
+	ImGui_ImplOpenGL3_Init();
+
+	bool showDemoWindow = true;
+	ImVec4 clearColor = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
+	while (!glfwWindowShouldClose(window))
+	{
+		glfwPollEvents();
+
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
+		if (showDemoWindow)
+			ImGui::ShowDemoWindow(&showDemoWindow);
+
+		ImGui::Render();
+		int32_t width, height;
+		glfwGetFramebufferSize(window, &width, &height);
+		glViewport(0, 0, width, height);
+		glClearColor(clearColor.x * clearColor.w, clearColor.y * clearColor.w, clearColor.z * clearColor.w, clearColor.w);
+		glClear(GL_COLOR_BUFFER_BIT);
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+		glfwSwapBuffers(window);
+	}
+
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
+
+	glfwDestroyWindow(window);
+	glfwTerminate();
+
+	/*
 	TriangleRegistry registry = LoadModel("amongus.glb");
 
 	glm::dvec3 light(2.0, 4.0, -4.0);
@@ -708,4 +776,5 @@ int main()
 	}
 
 	image.WriteImage("image.png");
+	*/
 }

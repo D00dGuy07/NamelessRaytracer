@@ -4,3 +4,9 @@
 [submodule "NamelessRaytracer/vendor/tinygltf"]
 	path = NamelessRaytracer/vendor/tinygltf
 	url = https://github.com/syoyo/tinygltf
+[submodule "NamelessRaytracer/vendor/glfw"]
+	path = NamelessRaytracer/vendor/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "NamelessRaytracer/vendor/imgui"]
+	path = NamelessRaytracer/vendor/imgui
+	url = https://github.com/ocornut/imgui.git
